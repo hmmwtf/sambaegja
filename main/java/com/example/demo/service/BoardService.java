@@ -6,5 +6,6 @@ import com.example.demo.vo.BoardVO;
 
 public interface BoardService {
 	List<BoardVO> select();
+	BoardVO selectBoardByIdx(int idx);
 	void insert(BoardVO vo);
 }
