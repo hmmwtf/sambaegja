@@ -34,4 +34,15 @@ public class BoardServiceImpl implements BoardService{
 		}
 	}
 
+	@Override
+	public BoardVO selectBoardByIdx(int idx) {
+		BoardVO vo = null;
+		try {
+			vo = dao.selectBoardByIdx(idx);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+
 }

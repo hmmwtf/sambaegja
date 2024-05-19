@@ -33,7 +33,7 @@ public class MainController {
 		model.addAttribute("vo",subBoardService.select("regdate"));
 		return "index";
 	}
-	@PostMapping(value = "/noteAdd")
+	@PostMapping(value = "/noteAdd")// 글쓰기
 	public String noteAdd(HttpSession session,@RequestParam(required = false) String content) {
 		SubBoardVO vo = new SubBoardVO();
 		vo.setContent(content);
@@ -45,33 +45,51 @@ public class MainController {
 	public void likePlus(@RequestBody HashMap<String, Object> map) {
 		subBoardService.updateLikePlus(map);
 	}
-	@GetMapping(value = "/selectLikey/{idx}")
+	@GetMapping(value = "/selectLikey/{idx}")//좋아요 순
 	@ResponseBody
 	public SubBoardVO selectLikey(@PathVariable int idx) {
 		return subBoardService.selectLikey(idx);
 	}
-	@DeleteMapping(value = "/sub_boardDelete")
+	@DeleteMapping(value = "/sub_boardDelete")// 24시 정각일때
 	@ResponseBody
 	public List<BoardVO> sub_boardDelete() {
-		subBoardService.deleteUpdate();
+		//subBoardService.deleteUpdate();
 		SubBoardVO sb = subBoardService.selectMaxLikey();
 		BoardVO vo = new BoardVO();
 		vo.setContent(sb.getContent());
 		vo.setId(vo.getId());
+		log.info("결과물2 : {}",sb);
 		vo.setRegDate(sb.getRegDate());
 		vo.setLikey(sb.getLikey());
+		vo.setTitle(sb.getRegDate());
+		log.info("결과물3 : {}",vo);
+		log.info("결과물3 : {}, {}",sb.getRegDate(),vo.getRegDate());
 		boardService.insert(vo);
+		log.info("결과물 : {}",boardService.select());
 		return boardService.select();
 	}
-	@GetMapping(value = "/selectBoard")
+	@GetMapping(value = "/selectBoard")// 추천순,날짜순
 	@ResponseBody
 	public List<SubBoardVO> selectBoard(@RequestParam(required = false) String option){
-		log.info("결과물 : {}",option);
 		return subBoardService.select(option);
 	}
-	@DeleteMapping(value = "/sub_boardDeleteIdx/{idx}")
+	@DeleteMapping(value = "/sub_boardDeleteIdx/{idx}")// 댓글삭제
 	@ResponseBody
 	public void sub_boardDeleteIdx(@PathVariable int idx) {
 		subBoardService.deleteIdx(idx);
+	}
+	@GetMapping(value = "/selectBoardByIdx/{idx}")
+	public String selectBoardByIdx(@PathVariable int idx,Model model) {
+		model.addAttribute("vo",boardService.selectBoardByIdx(idx));
+		return "selectBoardByIdx";
+	}
+	@GetMapping(value = "/selectMainBoard")
+	@ResponseBody
+	public List<BoardVO> selectMainBoard(){
+		return boardService.select();
+	}
+	@GetMapping(value = "/prevBoard")
+	public String prevBoard() {
+		return "prevBoard";
 	}
 }

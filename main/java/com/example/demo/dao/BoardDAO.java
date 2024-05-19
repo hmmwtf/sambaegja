@@ -10,5 +10,6 @@ import com.example.demo.vo.BoardVO;
 @Mapper
 public interface BoardDAO {
 	List<BoardVO> select()throws SQLException;
+	BoardVO selectBoardByIdx(int idx)throws SQLException;
 	void insert(BoardVO vo)throws SQLException;
 }
