@@ -2,7 +2,7 @@ var date = new Date();
 var hour = date.getHours();
 var minute = date.getMinutes();
 var second = date.getSeconds();
-if (hour == 10 && minute == 15) { // 24시 정각일때
+if (hour == 15 && minute == 43) { // 24시 정각일때
 	axios.delete('/sub_boardDelete')
 		.then(function(response) {
 			// handle success
@@ -42,7 +42,9 @@ $(function() {
 		if($('#login_id').val().length==0){
 			alert("로그인후 이용해 주세요.");
 			location.href='/login';
+			return false;
 		}
+		location.href='/prevBoard';
 	});
 	$("#add").click(function() { // 글쓰기
 		if ($("#login_id").val().length == 0) {
@@ -64,11 +66,12 @@ $(function() {
 	axios.get('/selectMainBoard')
 			.then(function(response) {
 				// handle success
-			console.log(response.data[0]);
+			console.log(response.data);
 			let data = response.data;
 			let boardTitle = response.data[0];
 			dateString=boardTitle.title;
 			dateFormat = new Date(dateString);
+			console.log(dateFormat.getFullYear());
 			console.log("날짜 : ",dateFormat);
 			date=$("<span>"+dateFormat.getFullYear()+"년 "+(Number)(dateFormat.getMonth()+1)+"월 "+dateFormat.getDate()+"일</span>");
 			$(date).appendTo($("#boardDate"));
