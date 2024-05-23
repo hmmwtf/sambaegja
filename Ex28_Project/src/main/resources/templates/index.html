@@ -4,9 +4,9 @@
 	<meta charset="UTF-8" />
 	<title>게시판</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
 	<style type="text/css">
 		table{width: 800px;margin: auto;}
 		.title{padding: 10px;text-align: center;border: none;font-size: 30pt;}
@@ -14,95 +14,22 @@
 		th,td{padding: 10px;border: 1px solid black;text-align: center;}
 		#button td{text-align: right;border: none;}
 	</style>
-	<script type="text/javascript">
-	let flag=0;
-		$(function(){
-			$("#login").click(function(){
-				location.href="/login";
-			});
-			$("#logout").click(function(){
-				location.href="/logout";
-			})
-			$("#add").click(function(){
-				if($("#login_id").val().length==0){
-					alert("로그인후 이용해 주세요.");
-					location.href="/login";
-				}else{
-					form=$("<form action='/noteAdd' method='post'></form>");
-					input=$("<input type='hidden' name='content' value='"+$("#sub_board").val()+"'>");
-					$(input).appendTo(form);
-					$("#result").html(form);
-					$(form).submit();
-				}
-			});
-		})
-		async function likey(idx){
-			if(flag==0){
-				if($(".check"+idx).attr('alt')==0){
-					$(".check"+idx).attr("src","/images/like2.png");
-					$(".check"+idx).attr("alt",1);
-					axios.post('/likePlus', {
-					    content: $("#sub_content"+idx).val(),
-					    idx: 1
-					  })
-					  .then(function (response) {
-					    console.log(response);
-					  })
-					  .catch(function (error) {
-					    console.log(error);
-					  });
-					flag=1;
-				}
-			}else{
-				if($(".check"+idx).attr('alt')==1){
-					$(".check"+idx).attr("src","/images/like1.png");
-					$(".check"+idx).attr("alt",0);
-					flag=0;
-					axios.post('/likePlus', {
-					    content: $("#sub_content"+idx).val(),
-					    idx: 0
-					  })
-					  .then(function (response) {
-					    console.log(response);
-					  })
-					  .catch(function (error) {
-					    console.log(error);
-					  });
-				}				
-
-			}
-				axios.get('/selectLikey/'+idx)
-				  .then(function (response) {
-				    // handle success
-				    console.log(response);
-				    let data = response.data;
-				    $("#likey"+idx).html(data.likey);
-				  })
-				  .catch(function (error) {
-				    // handle error
-				    console.log(error);
-				  })
-				  .then(function () {
-				    // always executed
-				  });
-		}
-	</script>
+	<script type="text/javascript" src="/js/index.js"></script>
 </head>
 <body>
-	<div style="text-align: center; "><h1 style="display: inline-block; "><a href="#">메인페이지</a></h1>
-	<button id="login" >Login</button>
-	<button id="logout">Logout</button>
-	
+	<div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
+	<button  class="btn btn-outline-secondary btn-sm"  id="prevBoard" >이전글 보기</button>
+	<button id="login"  class="btn btn-outline-secondary btn-sm" >Login</button>
+	<button id="logout" class="btn btn-outline-secondary btn-sm" >Logout</button> <p></p>
+	<h2>주제 : 꽃1,꽃2,꽃3</h2>
 	<input type="hidden" id="login_id" th:value="${session.id}"  /> <br />
-	<textarea name="" id="" cols="100" rows="20"></textarea> <br /> <p></p>
+	<span id="boardDate"></span>
+	<div id="main_board">글이 없습니다.</div>
+	 <br /> <p></p>
 	<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px;"></textarea>
-	<button  id="add">글쓰기</button> <br />
-	<div th:each="vo:${vo}" th:if="${vo !=null}" style="margin-left: 30%;">
-		<div style="width: 800px;"><textarea name="" th:id="@{|sub_content${vo.idx}|}" cols="70" rows="10">[[${vo.content}]]</textarea>
-		<span th:id="|likey${vo.idx}|">[[${vo.likey}]]</span>
-		<img  style="margin-bottom: 350px; cursor:pointer; width: 100px;height: 100px;" th:class="@{|check${vo.idx}|} " th:onclick="'likey('+${vo.idx}+')'" src="/images/like1.png" alt="0" /></div>
-	</div>
-	<div id="result"></div>
+	<button  id="add"  class="btn btn-outline-secondary btn-sm" >글쓰기</button><select id='select'><option value='regdate'>날짜 순</option><option value='likey'>추천 순</option></select> <br />
+	<div id="result">	</div>
+	<div id="result2"></div>
 	</div>
 </body>
 </html>
