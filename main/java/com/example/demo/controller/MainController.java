@@ -1,7 +1,11 @@
 package com.example.demo.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.BoardService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.SubBoardService;
 import com.example.demo.vo.BoardVO;
 import com.example.demo.vo.SubBoardVO;
@@ -28,7 +33,10 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	private final SubBoardService subBoardService;
 	private final BoardService boardService;
-	@GetMapping(value = "/")
+	private final ImageService imageService;
+	
+	
+	@GetMapping(value = "/")// 메인화면
 	public String index(Model model) {
 		model.addAttribute("vo",subBoardService.select("regdate"));
 		return "index";
@@ -41,31 +49,29 @@ public class MainController {
 		subBoardService.insert(vo);
 		return "redirect:/";
 	}
-	@PostMapping(value = "/likePlus")
+	@PostMapping(value = "/likePlus") // 좋아요 업데이트
+	@ResponseBody
 	public void likePlus(@RequestBody HashMap<String, Object> map) {
 		subBoardService.updateLikePlus(map);
 	}
-	@GetMapping(value = "/selectLikey/{idx}")//좋아요 순
+	@GetMapping(value = "/selectLikey/{idx}")
 	@ResponseBody
 	public SubBoardVO selectLikey(@PathVariable int idx) {
 		return subBoardService.selectLikey(idx);
 	}
 	@DeleteMapping(value = "/sub_boardDelete")// 24시 정각일때
 	@ResponseBody
-	public List<BoardVO> sub_boardDelete() {
+	public List<BoardVO> sub_boardDelete(HttpSession session) {
 		//subBoardService.deleteUpdate();
 		SubBoardVO sb = subBoardService.selectMaxLikey();
 		BoardVO vo = new BoardVO();
 		vo.setContent(sb.getContent());
-		vo.setId(vo.getId());
-		log.info("결과물2 : {}",sb);
+		vo.setId(sb.getId());
 		vo.setRegDate(sb.getRegDate());
 		vo.setLikey(sb.getLikey());
-		vo.setTitle(sb.getRegDate());
-		log.info("결과물3 : {}",vo);
-		log.info("결과물3 : {}, {}",sb.getRegDate(),vo.getRegDate());
+		subBoardService.deleteUpdate();
+		vo.setTitle(boardService.selectTitle());
 		boardService.insert(vo);
-		log.info("결과물 : {}",boardService.select());
 		return boardService.select();
 	}
 	@GetMapping(value = "/selectBoard")// 추천순,날짜순
@@ -89,7 +95,21 @@ public class MainController {
 		return boardService.select();
 	}
 	@GetMapping(value = "/prevBoard")
-	public String prevBoard() {
+	public String prevBoard(Model model) {
+		model.addAttribute("image",imageService.select());
 		return "prevBoard";
+	}
+	@GetMapping(value = "/prevBoardSelectByTitle/{title}")
+	public String prevBoardSelectByTitle(@PathVariable String title,Model model) {
+		Date date;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA).parse(title);
+			log.info("결과물 : {}, {}",title,date);
+			model.addAttribute("vo",boardService.selectByTitle(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "prevBoardSelectByTitle";
 	}
 }

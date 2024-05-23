@@ -31,7 +31,7 @@
 		select * from sub_board where likey=(select max(likey) from sub_board) limit 1
 	</select>
 	<delete id="deleteUpdate">
-		delete from sub_board where <![CDATA[likey<(select max(likey) from sub_board)]]>
+		delete from sub_board where idx=(select idx from(select idx,max(likey) from sub_board limit 1)t)
 	</delete>
 	<delete id="deleteIdx" parameterType="Integer">
 		delete from sub_board where idx=#{idx}
