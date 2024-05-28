@@ -19,8 +19,8 @@
 <body>
 	<div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
 	<button  class="btn btn-outline-secondary btn-sm"  id="prevBoard" >이전글 보기</button>
-	<button id="login"  class="btn btn-outline-secondary btn-sm" >Login</button>
-	<button id="logout" class="btn btn-outline-secondary btn-sm" >Logout</button> <p></p>
+	<button id="login"  class="btn btn-outline-secondary btn-sm" th:if="${session.id} == null">Login</button>
+	<button id="logout" class="btn btn-outline-secondary btn-sm"  th:if="${session.id} != null">Logout</button> <p></p>
 	<h2>주제 : 꽃1,꽃2,꽃3</h2>
 	<input type="hidden" id="login_id" th:value="${session.id}"  /> <br />
 	<span id="boardDate"></span>

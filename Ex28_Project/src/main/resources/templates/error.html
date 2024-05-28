@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Thymeleaf를 사용하겠다. -->
-<html lang="ko" xmlns="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>에러발생!!!</title>
@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-	<h2>죄송!!! 에러입니다. 빠르게 조치할게요!!!</h2>
+	<h2>에러입니다. 빠르게 조치할게요!!!</h2>
 	<h2 th:text="${status}"></h2>
 	<h2 th:text="${error}"></h2>
 </body>

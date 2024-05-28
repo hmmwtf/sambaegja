@@ -8,6 +8,6 @@ import com.example.demo.vo.LoginVO;
 
 @Mapper
 public interface LoginDAO {
-	LoginVO selectByIdx(int idx)throws SQLException;
+	LoginVO selectById(String id)throws SQLException;
 	void insert(LoginVO vo)throws SQLException;
 }

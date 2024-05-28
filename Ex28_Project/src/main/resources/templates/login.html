@@ -5,14 +5,37 @@
 	<title>로그인</title>
 	<link rel="stylesheet" href="/css/login.css" />
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("#submit").click(function(){
 				form = $("<form action='/loginOk' method='post'></form>");
 				input=$("<input type='text' name='id' value='"+$("#id").val()+"'/>");
-				$(input).appendTo(form);
-				$("#result").html(form);
-				$(form).submit();
+				if($("#id").val().length==0){
+					alert("아이디를 입력해주세요.")
+					return false;
+				}
+			axios.get('/selectById?id=' + $("#id").val())
+				.then(function(response) {
+					// handle success
+					console.log(response.data);
+					let data = response.data;
+					if(data.password==$("#password").val()){
+						$(input).appendTo(form);
+						$("#result").html(form);
+						$(form).submit();
+					}else{
+						alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+						return false;						
+					}
+				})
+				.catch(function(error) {
+					// handle error
+					console.log(error);
+				})
+				.then(function() {
+					// always executed
+				});
 			});
 		});
 	</script>
@@ -26,7 +49,7 @@
 	      <label>Username</label>
 	    </div>
 	    <div class="user-box">
-	      <input type="password" name="password" required="required">
+	      <input type="password" name="password" id="password" required="required">
 	      <label>Password</label>
 	    </div>
 	    <a id="submit">

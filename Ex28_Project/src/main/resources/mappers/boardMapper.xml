@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.BoardDAO">
 	<select id="select" resultType="BoardVO">
-		SELECT * from board where title between (select start_date from images where idx=(select images.idx  from images,board where regdate between start_date and end_date limit 1)) and (select end_date from images where idx=(select images.idx  from images,board where regdate between start_date and end_date limit 1))
+		select * from board where regdate between (select start_date from images where date_format(now(),'%Y-%m-%d') between start_date and end_date) and (select end_date from images where now() between start_date and end_date)
 	</select>
 	<select id="selectBoardByIdx" parameterType="int" resultType="BoardVO">
 		select * from board where idx=#{idx}

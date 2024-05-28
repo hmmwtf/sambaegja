@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.SubBoardDAO">
 	<select id="select" resultType="SubBoardVO" parameterType="String">
-		select * from sub_board order by 
+	select * from sub_board where regdate between (select start_date from images where date_format(now(),'%Y-%m-%d')  between start_date and end_date) and (select end_date from images where now() between start_date and end_date)
+		order by
 		<choose> 
 		<when test="option=='regdate'">regdate</when>
 		<when test="option=='likey'">likey desc,regdate</when>

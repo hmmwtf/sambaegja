@@ -13,7 +13,7 @@
 	<button onclick="javascript:history.back();" class="btn btn-outline-secondary btn-sm" >이전</button> <br /> <p></p>
 	<div th:each="vo:${image}" >
 		<div>[[${#dates.format(vo.start_date,"yyyy-MM-dd")}]]</div>
-		<img th:src="@{|/images/${vo.image}|}" alt=""  style="cursor:pointer;" th:onclick="@{|location.href='/prevBoardSelectByTitle/${#dates.format(vo.start_date,'yyyy-MM-dd')}'|}"/>
+		<img th:src="@{|/images/${vo.image}|}" alt=""  style="cursor:pointer;" th:onclick="@{|location.href='/prevBoardSelectByTitle/${#dates.format(vo.start_date,'yyyy-MM-dd')}'|}" />
 	</div>
 </body>
 </html>

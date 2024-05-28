@@ -14,10 +14,10 @@ import lombok.RequiredArgsConstructor;
 public class LoginServiceImpl implements LoginService{
 	private final LoginDAO dao;
 	@Override
-	public LoginVO selectByIdx(int idx) {
+	public LoginVO selectById(String id) {
 		LoginVO vo = null;
 		try {
-			vo = dao.selectByIdx(idx);
+			vo = dao.selectById(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
