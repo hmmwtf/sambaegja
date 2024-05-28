@@ -2,34 +2,60 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>게시판</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼백자</title>
+	
+	<!-- css -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+	<!-- js -->
+	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
-	<style type="text/css">
-		table{width: 800px;margin: auto;}
-		.title{padding: 10px;text-align: center;border: none;font-size: 30pt;}
-		.sub_title{padding: 10px;text-align: right;border: none;font-size: 17pt;}
-		th,td{padding: 10px;border: 1px solid black;text-align: center;}
-		#button td{text-align: right;border: none;}
-	</style>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>
+
 </head>
 <body>
-	<div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
-	<button  class="btn btn-outline-secondary btn-sm"  id="prevBoard" >이전글 보기</button>
-	<button id="login"  class="btn btn-outline-secondary btn-sm" >Login</button>
-	<button id="logout" class="btn btn-outline-secondary btn-sm" >Logout</button> <p></p>
+
+	<!-- 헤더 -->
+	<header class="blackShadow">
+		<h1 id="logo"><a href="./index.html"><img src="../static/img/logo.png" alt="sambaegja logo"></a></h1>
+		<nav>
+
+		</nav>
+	</header>
+
+	<!--이번주 올라온 스토리 -->
+	<section id="storyTrainContainer">
+		<div class="thisWeekStory blackShadow">
+			<h3>( 월요일 두번째 장면 )</h3>
+			<h>즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타이다. 난으학고다 미다알다 경시범의,
+		    	서이리빧 호거의 자반성운늴면 식에짚이에 가시다 자껭절 하사가링는다 이이뭐요다. 비우의 소서즈가 리온방의 히드읺잌
+				디의 근트단은 온어뎔던어 겨누키흐다. 자스롤패길은 셤넌호면 센아는 다뉴스매 움녀너다. 뮤할쇵어하를 가밍사쥤의 변져
+				어도 긴힌내햐를 브븡오가가 닝안쟁극은, 애가돡릴등은 자새본은 넜쟈. 샌다어앤 힌순 묘혀고습이다 다자샤와 으차.
+			</h>
+		</div>
+	</section>
+
+	<!-- 댓글 -->
+	<section>
+
+	</section>
+
+
+	<!-- <div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
+	<button id="login" >Login</button>
+	<button id="logout">Logout</button> <p></p>
 	<h2>주제 : 꽃1,꽃2,꽃3</h2>
 	<input type="hidden" id="login_id" th:value="${session.id}"  /> <br />
-	<span id="boardDate"></span>
-	<div id="main_board">글이 없습니다.</div>
-	 <br /> <p></p>
+	<textarea name="" id="board" cols="100" rows="20"></textarea> <br /> <p></p>
 	<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px;"></textarea>
-	<button  id="add"  class="btn btn-outline-secondary btn-sm" >글쓰기</button><select id='select'><option value='regdate'>날짜 순</option><option value='likey'>추천 순</option></select> <br />
+	<button  id="add">글쓰기</button><select id='select'><option value='regdate'>날짜 순</option><option value='likey'>추천 순</option></select> <br />
 	<div id="result">	</div>
 	<div id="result2"></div>
-	</div>
+	</div> -->
 </body>
 </html>
