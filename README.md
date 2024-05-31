@@ -27,6 +27,7 @@
  - Spring Data JPA
  - Spring Web MVC
  - Spring AOP
+ - jdk 22
 
 ---
 ## 구현 순서
