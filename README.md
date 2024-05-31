@@ -3,7 +3,7 @@
 
 ---
 ## 테이블구조
-
+![ERD](https://github.com/hmmwtf/sambaegja/assets/94499659/7ec5087c-e5cd-46b0-916f-41b0e6bf2f1d)
 
 ---
 
