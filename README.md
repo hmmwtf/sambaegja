@@ -21,7 +21,7 @@
 ## 작업환경
 #### SpringBoot
  - Java 1.8
- - Maven
+ - Gradle
  - Mybatis 
  - SpringBoot 3.3.0  
  - Spring Data JPA
