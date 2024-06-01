@@ -8,7 +8,7 @@
 ---
 
 ## 프로젝트 동작 흐름
-
+![MVC](https://github.com/hmmwtf/sambaegja/assets/94499659/0e1216ad-8216-4fae-b015-34451c46b5ca)
 
 
 ---
