@@ -1,4 +1,20 @@
 @charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
+/* 블랙은 900 볼드는 700 미디엄은 500 라이트는 200 */
+
+/* setting */
+.blackShadow{
+	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.1));
+}
+h3{
+    font-weight: bold;
+    font-size: 24.67px;
+    line-height: 52px;
+}
+p{
+    font-size: 24.67px;
+    line-height: 52px;
+}
 
 /* header */
 header{
@@ -20,15 +36,61 @@ header{
 /* 이번주올라온스토리 */
 #storyTrainContainer{
 	width: 1320px;
-	margin: 225px 600px 72px;
+	margin: 225px auto 72px;
 }
 .thisWeekStory{
+    width: 1321.4px;
+    height: 320px;
+    background-color: #fff;
+    border-radius: 40px;
 	margin: 52px 0;
+    padding: 34px 41px;
+}
+
+/* 댓글 */
+#mentionContainer{
+    width: 1320px;
+	margin: 225px auto 72px;
+}
+.mention{
+    width: 1321.4px;
+    height: 90px;
+    background-color: #fff;
+    border-radius: 40px;
+	margin: 18px 0;
+    padding: 32px 26px;
 }
 
 
-/* setting */
-.blackShadow{
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.1));
+/* prevBoard 페이지 */
+
+/* 팝업 */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+.popup-close {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: #007bff;
 }
