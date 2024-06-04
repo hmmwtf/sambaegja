@@ -1,35 +1,72 @@
 <!doctype html>
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
 <head>
+
 	<meta charset="UTF-8" />
-	<title>게시판</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>삼백자</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+	<!-- js -->
+	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
-	<style type="text/css">
-		table{width: 800px;margin: auto;}
-		.title{padding: 10px;text-align: center;border: none;font-size: 30pt;}
-		.sub_title{padding: 10px;text-align: right;border: none;font-size: 17pt;}
-		th,td{padding: 10px;border: 1px solid black;text-align: center;}
-		#button td{text-align: right;border: none;}
-	</style>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>
 </head>
+
 <body>
-	<div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
-	<button  class="btn btn-outline-secondary btn-sm"  id="prevBoard" >이전글 보기</button>
-	<button id="login"  class="btn btn-outline-secondary btn-sm" >Login</button>
-	<button id="logout" class="btn btn-outline-secondary btn-sm" >Logout</button> <p></p>
-	<h2>주제 : 꽃1,꽃2,꽃3</h2>
-	<input type="hidden" id="login_id" th:value="${session.id}"  /> <br />
+<!--header-->
+
+<header class="blackShadow">
+
+	<nav>
+		<h1 id="logo"><a href="/"><img src="/img/logo.png" alt="sambaegja logo"></a></h1>
+		<div class="header-content">
+			<h2>이번주 주제는 <span class="rounded-span">꽃1</span> <span class="rounded-span">꽃2</span> <span class="rounded-span">꽃3</span> 입니다.</h2>
+			<p>오늘 밤 11시까지 3번째 장면에 투표해 주세요!</p>
+		</div>
+		<div class="header-links">
+			<button class="btn btn-outline-secondary btn-sm" id="prevBoard">이전글 보기</button>
+			<button id="login" class="btn btn-outline-secondary btn-sm" th:if="${session.id}==null">Login</button>
+			<button id="logout" class="btn btn-outline-secondary btn-sm" th:if="${session.id}!=null">Logout</button>
+		</div>
+	</nav>
+</header>
+
+<div style="margin-top: 153px">
+	<input type="hidden" id="login_id" th:value="${session.id}" /> <br />
 	<span id="boardDate"></span>
 	<div id="main_board">글이 없습니다.</div>
-	 <br /> <p></p>
-	<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px;"></textarea>
-	<button  id="add"  class="btn btn-outline-secondary btn-sm" >글쓰기</button><select id='select'><option value='regdate'>날짜 순</option><option value='likey'>추천 순</option></select> <br />
-	<div id="result">	</div>
-	<div id="result2"></div>
+	<br />
+
+	<div>
+		<select id='select'>
+			<option value='regdate'>날짜 순</option>
+			<option value='likey'>추천 순</option>
+		</select>
+		<button id="change_div" class="btn btn-outline-secondary btn-sm">글쓰기</button>
 	</div>
+	<br />
+	<!--댓글 작성-->
+	<div id="textarea-container" class="hidden-container">
+		<button id="add" class="btn btn-outline-secondary btn-sm">올리기</button>
+		<div class="blackShadow write-mention">
+			<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px; border: none"></textarea>
+		</div>
+	</div>
+	<!--댓글 출력-->
+	<div id="comments-container">
+		<div id="result"></div>
+<!--		<div id="result2"></div>-->
+	</div>
+</div>
+
 </body>
+
 </html>

@@ -1,0 +1,164 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
+/* 블랙은 900 볼드는 700 미디엄은 500 라이트는 200 */
+
+/* setting */
+.blackShadow {
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.1));
+}
+h3 {
+    font-weight: bold;
+    font-size: 24.67px;
+    line-height: 52px;
+}
+p {
+    font-size: 24.67px;
+    line-height: 52px;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 153px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+#logo {
+    margin-right: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.header-content {
+    text-align: center;
+    flex-grow: 1; /* 가변 너비로 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-links {
+    display: flex;
+    gap: 10px; /* 버튼 간 간격 추가 */
+}
+
+.rounded-span {
+    background-color: darkred;
+    color: white; /* 글자 색상은 흰색 */
+    padding: 5px 10px; /* 내부 여백 */
+    border-radius: 10px; /* 둥근 모서리 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    width: 100px;
+}
+
+
+/* 이번주올라온스토리 */
+#storyTrainContainer {
+    width: 1320px;
+    margin: 225px auto 72px;
+}
+.thisWeekStory {
+    width: 1321.4px;
+    height: 320px;
+    background-color: #fff;
+    border-radius: 40px;
+    margin: 52px 0;
+    padding: 34px 41px;
+}
+
+/* 댓글 */
+#mentionContainer {
+    width: 1320px;
+    margin: 225px auto 72px;
+}
+.mention {
+    height: 90px;
+    background-color: #fff;
+    border-radius: 40px;
+    margin: 18px 299px;
+    padding: 26px 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.write-mention{
+    background-color: #fff;
+    border-radius: 40px;
+    margin: 5px 30px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden-container{
+    display: none;
+}
+
+/* prevBoard 페이지 */
+
+/* 팝업 */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+.popup-close {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: #007bff;
+}
+
+table {
+    width: 800px;
+    margin: auto;
+}
+.title {
+    padding: 10px;
+    text-align: center;
+    border: none;
+    font-size: 30pt;
+}
+.sub_title {
+    padding: 10px;
+    text-align: right;
+    border: none;
+    font-size: 17pt;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+#button td {
+    text-align: right;
+    border: none;
+}
