@@ -2,13 +2,21 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
 
 <head>
+
 	<meta charset="UTF-8" />
-	<title>게시판</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>삼백자</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+	<!-- js -->
+	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
-	<link rel="stylesheet" href="/css/style.css" />
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>
 </head>
 
@@ -16,7 +24,6 @@
 <!--header-->
 
 <header class="blackShadow">
-
 	<nav>
 		<h1 id="logo"><a href="/"><img src="/img/logo.png" alt="sambaegja logo"></a></h1>
 		<div class="header-content">
@@ -31,22 +38,32 @@
 	</nav>
 </header>
 
-<div>
+<div style="margin-top: 153px">
 	<input type="hidden" id="login_id" th:value="${session.id}" /> <br />
 	<span id="boardDate"></span>
 	<div id="main_board">글이 없습니다.</div>
 	<br />
-	<!--댓글 작성-->
 
-	<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px;"></textarea>
-	<button id="add" class="btn btn-outline-secondary btn-sm">글쓰기</button>
+	<div>
+		<select id='select'>
+			<option value='regdate'>날짜 순</option>
+			<option value='likey'>추천 순</option>
+		</select>
+		<button id="change_div" class="btn btn-outline-secondary btn-sm">글쓰기</button>
+	</div>
+	<br />
+	<!--댓글 작성-->
+	<div id="textarea-container" class="hidden-container">
+		<button id="add" class="btn btn-outline-secondary btn-sm">올리기</button>
+		<div class="blackShadow write-mention">
+			<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px; border: none"></textarea>
+		</div>
+	</div>
 	<!--댓글 출력-->
-	<select id='select'>
-		<option value='regdate'>날짜 순</option>
-		<option value='likey'>추천 순</option>
-	</select> <br />
-	<div id="result"></div>
-	<div id="result2"></div>
+	<div id="comments-container">
+		<div id="result"></div>
+		<div id="result2"></div>
+	</div>
 </div>
 
 </body>

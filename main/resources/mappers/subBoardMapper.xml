@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.SubBoardDAO">
 	<select id="select" resultType="SubBoardVO" parameterType="String">
-		select * from sub_board order by 
-		<choose> 
-		<when test="option=='regdate'">regdate</when>
-		<when test="option=='likey'">likey desc,regdate</when>
-		</choose> 
-	</select>	
+		select * from sub_board order by
+		<choose>
+			<when test="option=='regdate'">regdate</when>
+			<when test="option=='likey'">likey desc,regdate</when>
+		</choose>
+	</select>
 	<insert id="insert" parameterType="SubBoardVO">
 		insert into sub_board values(0,#{content},0,now(),#{id})
 	</insert>
 	<update id="updateLikePlus" parameterType="hashmap">
-	<choose>
-		<when test="idx==1">
-			update sub_board set likey=likey+1 where content=#{content}	
-		</when>
-		<otherwise>
-			update sub_board set likey=likey-1 where content=#{content}	
-		</otherwise>
-	</choose>
+		<choose>
+			<when test="idx==1">
+				update sub_board set likey=likey+1 where idx=#{idx2}
+			</when>
+			<otherwise>
+				update sub_board set likey=likey-1 where idx=#{idx2}
+			</otherwise>
+		</choose>
 	</update>
 	<select id="selectLikey" parameterType="int" resultType="SubBoardVO">
 		select * from sub_board where idx=#{idx}
 	</select>
-	
+
 	<select id="selectMaxLikey" resultType="SubBoardVO">
 		select * from sub_board where likey=(select max(likey) from sub_board) limit 1
 	</select>
