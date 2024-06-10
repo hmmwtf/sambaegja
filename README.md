@@ -1,5 +1,12 @@
 # SpringBoot를 이용한 웹사이트 제작
 
+---
+
+
+## 메인 페이지
+![image](https://github.com/hmmwtf/sambaegja/assets/94499659/61bc55a3-c9d9-4bf4-af7a-872ccf61b75e)
+
+
 
 ---
 ## 테이블구조
@@ -17,6 +24,8 @@
   - Eclipse 
   - IntelliJ
   - Vscode
+  - DBeaver
+  - Mysql workbench 8.0
 
 ## 작업환경
 #### SpringBoot
@@ -40,7 +49,7 @@
 - 로그인 시 페이지 상단의 로그인, 회원가입을 로그아웃으로 변경
 
 #### 3. 게시판 기능 구현하기
-- 기본적인 페이징 및 검색 기능 구현
+- 기본적인 웹 페이지 및 검색 기능 구현
 
 ### 4. 
 
