@@ -27,6 +27,7 @@
 ---
 
 ## 개발 도구
+  - Figma
   - Eclipse 
   - IntelliJ
   - Vscode
