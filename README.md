@@ -4,7 +4,13 @@
 
 
 ## 메인 페이지
-![image](https://github.com/hmmwtf/sambaegja/assets/94499659/61bc55a3-c9d9-4bf4-af7a-872ccf61b75e)
+![mainpage](https://github.com/hmmwtf/sambaegja/assets/88608418/0a0c9e8c-748c-4f09-888e-3be25cbe138c)
+## 메인 페이지 : 글쓰기
+![mainpage01_01](https://github.com/hmmwtf/sambaegja/assets/88608418/af7c548d-c7da-4317-bc03-eae476f60a58)
+## 서브 페이지
+![subpage01](https://github.com/hmmwtf/sambaegja/assets/88608418/75d82355-47ae-4231-a50f-fbc7639c044b)
+## 서브 페이지 : 팝업
+![subpage01_popup](https://github.com/hmmwtf/sambaegja/assets/88608418/b2bb64e5-2829-4e10-920f-4ece0a5a5ad4)
 
 
 
