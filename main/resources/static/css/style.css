@@ -273,7 +273,9 @@ nav {
     z-index: 19999;
 }
 #popupStoryTrainContainer{
-    margin: 225px auto 72px;
+    position: relative;
+    top: -300px;
+    margin: 72px auto 72px;
     width: 100%;
     min-width: 1000px;
 }
@@ -290,7 +292,7 @@ nav {
 .popup-close {
     position: fixed;
     right: -90px;
-    top: 230px;
+    top: -230px;
     cursor: pointer;
     z-index: 20000;
     background-color: transparent;
