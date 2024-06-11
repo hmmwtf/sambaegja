@@ -1,5 +1,5 @@
 window.onload = function() {
-    var stories = document.querySelectorAll('.thisWeekStory');
+    var stories = document.querySelectorAll('.preWeekStory');
     var popup = document.getElementById('popup');
     var popupOverlay = document.getElementById('popupOverlay');
     var popupClose = document.getElementById('popupClose');

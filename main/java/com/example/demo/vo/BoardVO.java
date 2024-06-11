@@ -10,7 +10,7 @@ public class BoardVO {
 	private Date title;
 	private String content;
 	private int likey;
-	private int category;
 	private Date regDate;
 	private String id;
+	private String start_date;
 }

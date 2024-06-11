@@ -1,7 +1,11 @@
 package com.example.demo.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.BoardService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.SubBoardService;
 import com.example.demo.vo.BoardVO;
 import com.example.demo.vo.SubBoardVO;
@@ -28,68 +33,92 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	private final SubBoardService subBoardService;
 	private final BoardService boardService;
-	@GetMapping(value = "/")
+	private final ImageService imageService;
+
+	@GetMapping(value = "/") // 메인화면
 	public String index(Model model) {
-		model.addAttribute("vo",subBoardService.select("regdate"));
+		model.addAttribute("vo", subBoardService.select("regdate"));
 		return "index";
 	}
-	@PostMapping(value = "/noteAdd")// 글쓰기
-	public String noteAdd(HttpSession session,@RequestParam(required = false) String content) {
+
+	@PostMapping(value = "/noteAdd") // 글쓰기
+	public String noteAdd(HttpSession session, @RequestParam(required = false) String content) {
 		SubBoardVO vo = new SubBoardVO();
 		vo.setContent(content);
 		vo.setId(session.getAttribute("id").toString());
 		subBoardService.insert(vo);
 		return "redirect:/";
 	}
-	@PostMapping(value = "/likePlus")
+
+	@PostMapping(value = "/likePlus") // 좋아요 업데이트
+	@ResponseBody
 	public void likePlus(@RequestBody HashMap<String, Object> map) {
 		subBoardService.updateLikePlus(map);
 	}
-	@GetMapping(value = "/selectLikey/{idx}")//좋아요 순
+
+	@GetMapping(value = "/selectLikey/{idx}")
 	@ResponseBody
 	public SubBoardVO selectLikey(@PathVariable int idx) {
 		return subBoardService.selectLikey(idx);
 	}
-	@DeleteMapping(value = "/sub_boardDelete")// 24시 정각일때
+
+	@DeleteMapping(value = "/sub_boardDelete") // 24시 정각일때
 	@ResponseBody
-	public List<BoardVO> sub_boardDelete() {
-		//subBoardService.deleteUpdate();
+	public List<BoardVO> sub_boardDelete(HttpSession session) {
+		// subBoardService.deleteUpdate();
 		SubBoardVO sb = subBoardService.selectMaxLikey();
 		BoardVO vo = new BoardVO();
 		vo.setContent(sb.getContent());
-		vo.setId(vo.getId());
-		log.info("결과물2 : {}",sb);
+		vo.setId(sb.getId());
 		vo.setRegDate(sb.getRegDate());
 		vo.setLikey(sb.getLikey());
-		vo.setTitle(sb.getRegDate());
-		log.info("결과물3 : {}",vo);
-		log.info("결과물3 : {}, {}",sb.getRegDate(),vo.getRegDate());
+		vo.setTitle(boardService.selectTitle());
+		subBoardService.deleteUpdate();
 		boardService.insert(vo);
-		log.info("결과물 : {}",boardService.select());
 		return boardService.select();
 	}
-	@GetMapping(value = "/selectBoard")// 추천순,날짜순
+
+	@GetMapping(value = "/selectBoard") // 추천순,날짜순
 	@ResponseBody
-	public List<SubBoardVO> selectBoard(@RequestParam(required = false) String option){
+	public List<SubBoardVO> selectBoard(@RequestParam(required = false) String option) {
+		log.info("결과값 : {}", subBoardService.select(option));
 		return subBoardService.select(option);
 	}
-	@DeleteMapping(value = "/sub_boardDeleteIdx/{idx}")// 댓글삭제
+
+	@DeleteMapping(value = "/sub_boardDeleteIdx/{idx}") // 댓글삭제
 	@ResponseBody
 	public void sub_boardDeleteIdx(@PathVariable int idx) {
 		subBoardService.deleteIdx(idx);
 	}
+
 	@GetMapping(value = "/selectBoardByIdx/{idx}")
-	public String selectBoardByIdx(@PathVariable int idx,Model model) {
-		model.addAttribute("vo",boardService.selectBoardByIdx(idx));
+	public String selectBoardByIdx(@PathVariable int idx, Model model) {
+		model.addAttribute("vo", boardService.selectBoardByIdx(idx));
 		return "selectBoardByIdx";
 	}
+
 	@GetMapping(value = "/selectMainBoard")
 	@ResponseBody
-	public List<BoardVO> selectMainBoard(){
+	public List<BoardVO> selectMainBoard() {
 		return boardService.select();
 	}
+
 	@GetMapping(value = "/prevBoard")
-	public String prevBoard() {
+	public String prevBoard(Model model) {
+		model.addAttribute("image", imageService.select());
 		return "prevBoard";
+	}
+
+	@GetMapping(value = "/prevBoardSelectByTitle/{title}")
+	public String prevBoardSelectByTitle(@PathVariable String title, Model model) {
+		Date date;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(title);
+			model.addAttribute("vo", boardService.selectByTitle(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "prevBoardSelectByTitle";
 	}
 }
