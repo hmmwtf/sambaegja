@@ -2,42 +2,72 @@
 <html lang="ko" xmlns:th="https://www.thyemleaf.org">
 <head>
 	<meta charset="UTF-8" />
-
-	<!-- css -->
-	<link rel="stylesheet" href="../static/css/reset.css">
-	<link rel="stylesheet" href="../static/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-
-		
 	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/webjars/axios/1.6.8/dist/axios.min.js"></script>
+	<title>삼백자 - 이전글보기</title>
 
-	<title>삼백자-이전스토리</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- css -->
+	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<!-- js -->
+	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
+	<script type="text/javascript" src="/js/scriptPreBoard.js"></script>
+
 </head>
 <body>
 
-	<!-- 헤더 -->
+	<!--header-->
 	<header class="blackShadow">
-		<h1 id="logo"><a href="./index.html"><img src="../static/img/logo.png" alt="sambaegja logo"></a></h1>
 		<nav>
-			
+		<h1 id="logo"><a href="./index"><img src="/img/logo.png" alt="sambaegja logo"></a></h1>
+			<div class="header-content">
+				<h2>이번주 주제는 <span class="rounded-span">꽃1</span> <span class="rounded-span">꽃2</span> <span class="rounded-span">꽃3</span> 입니다.</h2>
+				<p class="miniP">오늘 밤 11시까지 3번째 장면에 투표해 주세요!</p>
+			</div>
+			<div class="header-links">
+				<!-- 아래 이거 수정필요 -->
+				<a href="/index"><button class="btn btn-outline-secondary btn-sm" id="prevBoard">이번주 스토리 쓰기</button></a>
+				<a href="/login"><button id="login" class="btn btn-outline-secondary btn-sm">로그인</button></a>
+				<a href="/logout"><button id="logout" class="btn btn-outline-secondary btn-sm">로그아웃</button></a>
+			</div>
 		</nav>
 	</header>
-	
-	<!-- <p>[[${#dates.format(vo.start_date,"( yyyy . MM . dd )")}]]</p> -->
 
 	<!-- 이전 스토리 모음 -->
-	<section id="storyTrainContainer">
-		<div class="thisWeekStory blackShadow">
-			<h3>( 2024 . 05 . 26 )</h3>
-			<p>즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타이다. 난으학고다 미다알다 경시범의, 서이리빧 호거의 자반성운늴면 식에짚이에 가시다 자껭절 하사가링는다 이이뭐요다. 비우의 소서즈가 리온방의 히드읺잌 디의 근트단은 온어뎔던어 겨누키흐다. 자스롤패길은 셤넌호면 센아는 다뉴스매 움녀너다. 뮤할쇵어하를 가밍사쥤의 변져변...
-			</p>
+	<section id="prestoryTrainContainer">
+		<div class="preWeekStory blackShadow">
+			<div>
+				<h3>( 2024 . 05 . 26 )</h3>
+				<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해...</p>
+				</p>
+			</div>
+			<img src="/img/preStoryImg01.png" alt="">
 		</div>
-		<div class="thisWeekStory blackShadow">
-			<h3>( 2024 . 05 . 26 )</h3>
-			<p>즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타이다. 난으학고다 미다알다 경시범의, 서이리빧 호거의 자반성운늴면 식에짚이에 가시다 자껭절 하사가링는다 이이뭐요다. 비우의 소서즈가 리온방의 히드읺잌 디의 근트단은 온어뎔던어 겨누키흐다. 자스롤패길은 셤넌호면 센아는 다뉴스매 움녀너다. 뮤할쇵어하를 가밍사쥤의 변져변...
-			</p>
+		<div class="preWeekStory blackShadow">
+			<div>
+				<h3>( 2024 . 05 . 19 )</h3>
+				<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해...</p>
+				</p>
+			</div>
+			<img src="/img/preStoryImg02.png" alt="">
+		</div>
+		<div class="preWeekStory blackShadow">
+			<div>
+				<h3>( 2024 . 05 . 12 )</h3>
+				<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해...</p>
+				</p>
+			</div>
+			<img src="/img/preStoryImg03.png" alt="">
 		</div>
 	</section>
 
@@ -46,18 +76,49 @@
 
     <!-- 팝업 창 -->
     <div class="popup" id="popup">
-        <p>팝업 내용</p>
-        <span class="popup-close" id="popupClose">닫기</span>
+		<div id="popupStoryTrainContainer">
+			<div class="popupStory blackShadow">
+				<h3>( 월요일 두번째 장면 )</h3>
+				<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해 중요한 데이터를 탈취하는 것. 하지만 예상치 못한 복병이 있었다. 인공지능 경비 시스템이 생각보다 더 정교하게 작동하고 있었다.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 화요일 두번째 장면 )</h3>
+				<p>에단은 어둠 속에서 조용히 움직였다. 손목에 찬 장치가 빛을 발하며 경로를 안내했다. '기밀 서버실은 저기다.' 그의 심장은 빠르게 뛰었다. 그러나 발걸음을 멈추게 하는 소리가 들렸다. 금속성 발걸음, 그리고 차가운 눈빛이 느껴졌다. 로봇 경비병이었다. 에단은 재빨리 몸을 숨겼다. '이대로는 안 되겠어.' 그는 장비를 조정하여 전자기 펄스를 발사, 로봇을 일시적으로 무력화했다. 그 순간, 그는 서둘러 서버실로 향했다.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 수요일 두번째 장면 )</h3>
+				<p>서버실 문 앞에 선 에단은 빠르게 코드 입력을 시작했다. '시간이 없다.' 경고등이 깜박이며 접근을 알렸다. 드디어 문이 열렸고, 그는 안으로 뛰어들었다. 눈앞에는 복잡한 네트워크 장비들이 즐비했다. 에단은 핵심 데이터베이스에 접근하기 위해 바이러스를 주입했다. 그러나 순간, 경보가 울리며 경비 시스템이 활성화되었다. '여기서 빨리 빠져나가야 해!' 그는 데이터를 다운로드하는 동안 주변을 경계했다. 시간이 촉박했다.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 목요일 두번째 장면 )</h3>
+				<p>데이터 다운로드가 완료되자마자, 에단은 퇴로를 찾기 시작했다. 그러나 경비 로봇들이 이미 복구되어 움직이고 있었다. 그는 창문으로 향했다. '이걸로는 탈출할 수 없어.' 다행히 그의 도구 중 하나는 강력한 줄사다리였다. 에단은 줄사다리를 창문에 고정하고, 신속히 탈출했다. 그 순간, 경비 로봇들이 방에 들어섰다. 에단은 아래로 내려가며, 이 모든 일이 단순한 임무가 아님을 깨달았다. 무언가 더 큰 일이 벌어지고 있었다.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 금요일 두번째 장면 )</h3>
+				<p>지하로 내려온 에단은 숨을 고르며 주위를 살폈다. 안전해 보였지만, 안심할 수 없었다. 그는 데이터를 검토하기 위해 노트북을 열었다. '이건... 예상보다 더 중요해.' 데이터 안에는 인류의 미래를 좌우할 정보들이 담겨 있었다. 정부의 비밀 프로젝트, 신기술 개발 계획 등이 포함되어 있었다. 에단은 이 정보를 어떻게 활용할지 고민했다. 그의 선택에 따라 많은 것들이 달라질 것이다. 그는 동료들에게 연락을 취했다.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 토요일 두번째 장면 )</h3>
+				<p>에단의 동료들은 이미 비밀 기지에서 그를 기다리고 있었다. 그들은 에단이 가져온 데이터를 분석하기 시작했다. '이건 상상을 초월하는 정보야.' 동료 중 한 명이 놀란 목소리로 말했다. 그들은 정부가 추진하는 음모를 파악했고, 이를 막기 위한 계획을 세우기 시작했다. 시간이 촉박했다. 에단은 자신이 선택한 길이 옳기를 바라며, 동료들과 함께 행동에 나섰다. 그들의 목표는 명확했다. 인류를 구하고, 정의를 실현하는 것.</p>
+			</div>
+			<div class="popupStory blackShadow">
+				<h3>( 일요일 두번째 장면 )</h3>
+				<p>결전의 날, 에단과 동료들은 목표 지점에 도착했다. 그들은 정부 시설에 잠입해 비밀 프로젝트를 무력화할 계획이었다. '이제 모든 것이 걸렸다.' 에단은 결의를 다지며, 최종 지시를 내렸다. 팀원들은 각자의 위치에서 임무를 수행했다. 긴장감이 감돌았지만, 모두가 집중하고 있었다. 드디어, 그들은 시설의 핵심 부서에 도달했고, 결정적인 순간이 다가왔다. 에단은 심호흡을 하며 마지막 명령을 내렸다. '지금이다!'</p>
+			</div>
+			
+			<button class="popup-close blackShadow" id="popupClose"><img src="/img/close.png" alt="closeIcon"></button>
+		</div>
     </div>
+	
 
-    <script src="../static/js/scriptPreBoard.js"></script>
 
-
-	<!-- <button onclick="location.href='/logout'" class="btn btn-outline-secondary btn-sm" >로그아웃</button>
-	<button onclick="javascript:history.back();" class="btn btn-outline-secondary btn-sm" >이전</button> <br /> <p></p>
-	<div th:each="vo:${image}" >
+	<!-- 수정 전 있던 것들... 이건 안 건드렸어요 -->
+	<!-- <div th:each="vo:${image}" style="margin-top: 153px" >
 		<div>[[${#dates.format(vo.start_date,"yyyy-MM-dd")}]]</div>
 		<img th:src="@{|/images/${vo.image}|}" alt=""  style="cursor:pointer;" th:onclick="@{|location.href='/prevBoardSelectByTitle/${#dates.format(vo.start_date,'yyyy-MM-dd')}'|}"/>
 	</div> -->
+
+
+	
 </body>
 </html>

@@ -1,79 +1,85 @@
 <!doctype html>
 <html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
 <head>
 
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>삼백자</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>삼백자</title>
 	
 	<!-- css -->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css" />
-
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
 	<!-- js -->
-	<script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
+	<script src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="/webjars/bootstrap/5.3.0/bootstrap.min.js"></script> -->
 	<script type="text/javascript" src="/webjars/jquery/3.7.0/dist/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>
-	
+	<!-- 스크롤 -->
+	<script type="text/javascript" src="/js/script.js"></script>
 </head>
+
 <body>
-	
-	<!-- 헤더 -->
+
+	<!--header-->
 	<header class="blackShadow">
-		<h1 id="logo"><a href="./index.html"><img src="../static/img/logo.png" alt="sambaegja logo"></a></h1>
 		<nav>
-			
+		<h1 id="logo"><a href="/index"><img src="/img/logo.png" alt="sambaegja logo"></a></h1>
+			<div class="header-content">
+				<h2>이번주 주제는 <span class="rounded-span">장미꽃</span> <span class="rounded-span">SF</span> <span class="rounded-span">긴장감</span> 입니다.</h2>
+				<p class="miniP">오늘 밤 11시까지 3번째 장면에 투표해 주세요!</p>
+			</div>
+			<div class="header-links">
+				<a href="/prevBoard"><button class="btn btn-outline-secondary btn-sm" id="prevBoard">이전글 보기</button></a>
+				<a href="/login"><button id="login" class="btn btn-outline-secondary btn-sm">로그인</button></a>
+				<a href="/index"><button id="logout" class="btn btn-outline-secondary btn-sm">로그아웃</button></a>
+			</div>
 		</nav>
 	</header>
-	
+
+	<!-- 데이터 미리 넣는 법을 모르겠어서 이렇게 보기편하게 일단 해둡니다 -->
 	<!--이번주 올라온 스토리 -->
 	<section id="storyTrainContainer">
 		<div class="thisWeekStory blackShadow">
 			<h3>( 월요일 두번째 장면 )</h3>
-			<p>즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타이다. 난으학고다 미다알다 경시범의,
-		    	서이리빧 호거의 자반성운늴면 식에짚이에 가시다 자껭절 하사가링는다 이이뭐요다. 비우의 소서즈가 리온방의 히드읺잌
-				디의 근트단은 온어뎔던어 겨누키흐다. 자스롤패길은 셤넌호면 센아는 다뉴스매 움녀너다. 뮤할쇵어하를 가밍사쥤의 변져
-				어도 긴힌내햐를 브븡오가가 닝안쟁극은, 애가돡릴등은 자새본은 넜쟈. 샌다어앤 힌순 묘혀고습이다 다자샤와 으차.
-			</p>
+			<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해 중요한 데이터를 탈취하는 것. 하지만 예상치 못한 복병이 있었다. 인공지능 경비 시스템이 생각보다 더 정교하게 작동하고 있었다.</p>
 		</div>
 		<div class="thisWeekStory blackShadow">
-			<h3>( 월요일 두번째 장면 )</h3>
-			<p>즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타이다. 난으학고다 미다알다 경시범의,
-				서이리빧 호거의 자반성운늴면 식에짚이에 가시다 자껭절 하사가링는다 이이뭐요다. 비우의 소서즈가 리온방의 히드읺잌
-				디의 근트단은 온어뎔던어 겨누키흐다. 자스롤패길은 셤넌호면 센아는 다뉴스매 움녀너다. 뮤할쇵어하를 가밍사쥤의 변져
-				어도 긴힌내햐를 브븡오가가 닝안쟁극은, 애가돡릴등은 자새본은 넜쟈. 샌다어앤 힌순 묘혀고습이다 다자샤와 으차.
-			</p>
+			<h3>( 화요일 두번째 장면 )</h3>
+			<p>하늘은 어둡고, 도시 위를 덮은 구름은 은밀하게 움직였다. 지하 연구소에서 멀지 않은 곳, 어느 건물의 옥상에서 신호를 보내는 빛이 깜박였다. 에단은 그 신호를 알아차렸다. '오늘이 그날이다.' 그는 호흡을 가다듬고, 감시 카메라의 사각지대를 따라 이동했다. 임무는 간단했다. 연구소에 잠입해 중요한 데이터를 탈취하는 것. 하지만 예상치 못한 복병이 있었다. 인공지능 경비 시스템이 생각보다 더 정교하게 작동하고 있었다.</p>
 		</div>
 	</section>
-	
-	<!-- 댓글 -->
+
+	<!-- 댓글섹션 -->
 	<section id="mentionContainer">
-		<p style="display: inline;">랭킹순 / 최신순</p>
-		<button style="display: inline;">글쓰기</button>
-		<div class="blackShadow mention">
-			<p>( 1위 )  즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타미...</p>
+		<input type="hidden" id="login_id" th:value="${session.id}" /> <br />
+		<span id="boardDate"></span>
+		<div id="main_board">글이 없습니다.</div>
+		
+		<div class="mentionHeader">
+			<select id='select' class="sort-options">
+				<option value='likey' id="rankingBtn" class="active">추천 순</option>
+				<option value='regdate' id="latestBtn">날짜 순</option>
+			</select>
+			<button id="change_div" class="btn btn-outline-secondary btn-sm writeBtn">글쓰기</button>
 		</div>
-		<div class="blackShadow mention">
-			<p>( 1위 )  즈찬즈련 일거율림을 셔질레삭은 티왕기한 로홀에 듀암심은 외드롤아가 저가타미...</p>
+		
+		<!--댓글 작성-->
+		<div id="textarea-container" class="hidden-container">
+			<button id="add" class="btn btn-outline-secondary btn-sm">올리기</button>
+			<div class="blackShadow write-mention">
+				<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px; border: none"></textarea>
+			</div>
 		</div>
-	</section>
-	<!-- <div style="text-align: center; "><h1 style="display: inline-block; "><a href="/">메인페이지</a></h1>
-	<button id="login" >Login</button>
-	<button id="logout">Logout</button> <p></p>
-	<h2>주제 : 꽃1,꽃2,꽃3</h2>
-	<input type="hidden" id="login_id" th:value="${session.id}"  /> <br />
-	<textarea name="" id="board" cols="100" rows="20"></textarea> <br /> <p></p>
-	<textarea name="" id="sub_board" cols="100" rows="10" style="margin-left: 70px;"></textarea>
-	<button  id="add">글쓰기</button><select id='select'><option value='regdate'>날짜 순</option><option value='likey'>추천 순</option></select> <br />
-	<div id="result">	</div>
-	<div id="result2"></div>
-</div> -->
-
-<script src="../static/js/script.js"></script>
-
-
+		<!--댓글 출력-->
+		<div id="comments-container">
+			<div id="result"></div>
+			<div id="result2"></div>
+		</div>
+</section>
 </body>
 </html>
